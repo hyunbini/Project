@@ -48,10 +48,10 @@ decision_tree_model = MultiOutputRegressor(DecisionTreeRegressor()).fit(train_x,
 bagging_model = BaggingRegressor(base_estimator=decision_tree_model,n_estimators=380,verbose=0).fit(train_x,train_y)
 
 #Predict First round score
-pred_LR = LR_original_model.predict(test_1)
-pred_RF = randomforest_model.predict(test_1)
-pred_DT = decision_tree_model.predict(test_1)
-pred_BAG = bagging_model.predict(test_1)
+pred_LR = np.round(LR_original_model.predict(test_1))
+pred_RF = np.round(randomforest_model.predict(test_1))
+pred_DT = np.round(decision_tree_model.predict(test_1))
+pred_BAG = np.round(bagging_model.predict(test_1))
 predict_LR = pd.DataFrame(pred_LR)
 predict_RF = pd.DataFrame(pred_RF)
 predict_DT = pd.DataFrame(pred_DT)
@@ -59,16 +59,19 @@ predict_BAG = pd.DataFrame(pred_BAG)
 
 #Calculate the First round result
 total_result_1 = pd.concat([predict_LR,predict_RF,predict_DT,predict_BAG])
+list_1 = total_result_1.values.tolist()
+result_1 = pd.DataFrame(list_1, columns= ['Anyang', 'Suwon'])
+print(result_1)
 pred_result_score_home_1 = total_result_1.iloc[:,0:1]
 pred_result_score_away_1 = total_result_1.iloc[:,1:2]
 result_home_1 = np.round(np.average(pred_result_score_home_1))
 result_away_1 = np.round(np.average(pred_result_score_away_1))  
 
 #Predict Second round result
-pred_LR_2 = LR_original_model.predict(test_2)
-pred_RF_2 = randomforest_model.predict(test_2)
-pred_DT_2 = decision_tree_model.predict(test_2)
-pred_BAG_2 = bagging_model.predict(test_2)
+pred_LR_2 =np.round(LR_original_model.predict(test_2))
+pred_RF_2 =np.round(randomforest_model.predict(test_2))
+pred_DT_2 =np.round(decision_tree_model.predict(test_2))
+pred_BAG_2 =np.round(bagging_model.predict(test_2))
 predict_LR_2 = pd.DataFrame(pred_LR_2)
 predict_RF_2 = pd.DataFrame(pred_RF_2)
 predict_DT_2 = pd.DataFrame(pred_DT_2)
@@ -76,6 +79,9 @@ predict_BAG_2 = pd.DataFrame(pred_BAG_2)
 
 #Calculate the Second round result
 total_result_2 = pd.concat([predict_LR_2,predict_RF_2,predict_DT_2,predict_BAG_2])
+list_2 = total_result_2.values.tolist()
+result_2 = pd.DataFrame(list_2, columns= ['Suwon', 'Anyang'])
+print(result_2)
 pred_result_score_home_2 = total_result_2.iloc[:,0:1]
 pred_result_score_away_2 = total_result_2.iloc[:,1:2]
 result_home_2 = np.round(np.average(pred_result_score_home_2))
