@@ -1,6 +1,7 @@
 ## About Repository
 Thank you for reading the readme file, and I hope it helps you a lot in your coding process.
-Repository that collects and uploads only the final files of various AI competitions and term projects conducted in the class curriculum.
+Repository that collects and uploads only the final files of various AI competitions and term projects conducted in the class curriculum until 2022-2.
+After being discharged from the army, new projects will be uploaded again from 2025-1.
 
 
 ## About Language
